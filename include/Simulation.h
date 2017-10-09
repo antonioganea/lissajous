@@ -4,6 +4,7 @@
 #include <SFML/Graphics/Image.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -40,6 +41,10 @@ class Simulation{
         char m_buffer[64];
 
         bool animatePhi;
+
+        bool animateCircles;
+        sf::CircleShape circles[3];
+        float circle_t;
 
         //float segment = 0, segsize = 0.1f;
 };

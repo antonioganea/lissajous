@@ -23,7 +23,9 @@ Simulation::Simulation( sf::Font * font ){
     phiX = 0.f;
     phiY = 0.f;
 
-    animatePhi = false;
+    circle_t = 0.f;
+
+    animateCircles = animatePhi = false;
 
     //sf::Text phiX, phiY, omegaX, omegaY, amplitude;
     for ( int i = 0; i < 5; i++ ){
@@ -35,6 +37,13 @@ Simulation::Simulation( sf::Font * font ){
         strcpy( m_buffer+strlen(m_buffer), " = " );
         strcpy( m_buffer+strlen(m_buffer), std::to_string(m_values[i]).c_str() );
         m_text[i].setString(m_buffer);
+    }
+
+    for ( int i = 0; i < 3; i++ ){
+        circles[i].setFillColor(sf::Color::Green);
+        circles[i].setRadius(10.f);
+        circles[i].setPosition(10+50*i,10+50*i);
+        circles[i].setOrigin(10.f,10.f);
     }
 }
 
@@ -105,6 +114,9 @@ void Simulation::onInput(sf::Event::KeyEvent keyEvent){
         case sf::Keyboard::T:
             phiX = phiY = 0;
             break;
+        case sf::Keyboard::Y:
+            animateCircles = !animateCircles;
+            break;
         default:;
     }
 }
@@ -115,6 +127,19 @@ void Simulation::update(){
         phiX+=0.01f;
         if ( phiX >= M_PI*2.f )
             phiX -= M_PI*2.f;
+    }
+
+    if ( animateCircles ){ // if computing a static figure
+        circle_t += 0.01;
+        if ( circle_t >= M_PI * 2.f )
+            circle_t -= M_PI * 2.f;
+
+        x = amplitude * sin ( omegaX*circle_t+phiX );
+        y = amplitude * sin ( omegaY*circle_t+phiY );
+        circles[0].setPosition( WIDTH/2.f+x, HEIGHT/2.f+y );
+
+        circles[1].setPosition( WIDTH/2.f+x, HEIGHT/2 + amplitude + 50.f );
+        circles[2].setPosition( WIDTH/2 - amplitude - 50.f, HEIGHT/2.f+y );
     }
 
     /*
@@ -136,6 +161,19 @@ void Simulation::update(){
 
 void Simulation::draw(sf::RenderWindow& window){
     window.draw( background );
+
+    if ( animateCircles ){ // if displaying a static figure
+        sf::Vertex vertices[4];
+        vertices[0].position = circles[0].getPosition();
+        vertices[1].position = circles[1].getPosition();
+        vertices[2].position = circles[0].getPosition();
+        vertices[3].position = circles[2].getPosition();
+        for ( int i = 0; i < 3; i++ ){
+            window.draw(circles[i]);
+            window.draw( vertices, 4, sf::PrimitiveType::Lines );
+        }
+    }
+
     for ( int i = 0; i < 5; i++ ){
         window.draw(m_text[i]);
     }
