@@ -33,14 +33,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="include/Button.h" />
 		<Unit filename="include/Config.h" />
 		<Unit filename="include/Simulation.cpp" />
 		<Unit filename="include/Simulation.h" />
-		<Unit filename="include/Slider.h" />
 		<Unit filename="lissajous.cpp" />
-		<Unit filename="src/Button.cpp" />
-		<Unit filename="src/Slider.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
