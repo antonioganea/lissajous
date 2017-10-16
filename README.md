@@ -17,14 +17,22 @@
 
 
 # Controls
-  A & S modify omegaX
-  Z & X modify omegaY
-  Q & W modify amplitude
-  C & V modify phiX
-  D & F modify phiY
-  R toggles on phi animation mode
-  T resets phiX, phiY to 0
-  Y toggles circle animation
+  * A & S modify omegaX
+  
+  * Z & X modify omegaY
+  
+  * Q & W modify amplitude
+  
+  * C & V modify phiX
+  
+  * D & F modify phiY
+  
+  * R toggles on phi animation mode
+  
+  * T resets phiX, phiY to 0
+  
+  * Y toggles circle animation
+  
 
 ## Downloadable .exe
   [Download link](https://www.dropbox.com/s/kcsm74m9q37oun0/Lissajous.7z?dl=0)
